@@ -238,7 +238,7 @@ main {
 }
 
 .recipe img {
-    height: 50%; /* L'image occupe la moitié de la carte */
+    height: 40%; /* L'image occupe la moitié de la carte */
     object-fit: cover; /* Assure que l'image s'adapte sans se déformer */
     width: 100%; /* Prend toute la largeur */
 }
@@ -385,6 +385,8 @@ main {
     margin: 20px 0;
     text-align: center;
 }
+
+/* AJOUT DE RECETTES*/
 .add-recette-form {
     display: flex;
     flex-direction: column;
@@ -476,6 +478,21 @@ main {
 .remove-ingredient-btn:hover {
     background-color: #C0392B; /* Rouge plus foncé au survol */
     transform: scale(1.1); /* Grossissement au survol */
+}
+
+.success-message {
+    background-color: #D4EDDA; /* Vert clair */
+    color: #155724; /* Texte vert foncé */
+    border: 1px solid #C3E6CB; /* Bordure verte */
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    max-width: 400px;
+    margin: 20px auto; /* Centré horizontalement */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    opacity: 1; /* Opacité initiale */
+    transition: opacity 0.5s ease-out; /* Animation de disparition */
 }
 
 /* FORMULAIRE DE CONNEXION */
@@ -581,17 +598,17 @@ main {
 
 /* PAGE "MES RECETTES"*/
 
-    .btn-delete {
-        background-color: #E74C3C; /* Rouge vif */
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: background-color 0.3s ease;
-    }
+.btn-delete {
+    background-color: #E74C3C; /* Rouge vif */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
 
-    .btn-delete:hover {
-        background-color: #C0392B; /* Rouge plus foncé */
-    }
+.btn-delete:hover {
+    background-color: #C0392B; /* Rouge plus foncé */
+}

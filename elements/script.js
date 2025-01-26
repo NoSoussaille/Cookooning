@@ -45,3 +45,21 @@ document.getElementById('ingredients-container').addEventListener('click', funct
 
 // Fin 
 
+// Div d'ajout de recette réussis
+
+    // Attendre que le DOM soit chargé
+    document.addEventListener("DOMContentLoaded", () => {
+        // Sélectionne l'élément avec la classe "success-message"
+        const message = document.querySelector(".success-message");
+
+        // Si le message existe, le faire disparaître après 10 secondes
+        if (message) {
+            setTimeout(() => {
+                message.style.opacity = "0"; // Réduit l'opacité à 0
+                setTimeout(() => message.remove(), 500); // Supprime complètement après l'animation
+            }, 10000); // 10 secondes
+        }
+    });
+
+// FIN
+
