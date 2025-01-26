@@ -1,0 +1,597 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+/* Style global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Indie Flower', cursive;
+}
+
+/* Header principal */
+.main-header {
+    background-color: #6B7AA1; /* Bleu pastel */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF; /* Blanc */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+/* Conteneur principal */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+}
+
+/* Titre */
+.header-title {
+    font-size: 50px; /* Taille ajustée */
+    margin-right: 20px; /* Espacement entre le titre et les liens */
+    color: #FFFFFF;
+}
+
+/* Navigation */
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFFFFF;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #D7A678;
+}
+
+/* Bouton menu burger */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+/* Menu burger - Mobile */
+@media screen and (max-width: 940px) {
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #7180AC;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+        z-index: 10;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+footer {
+    background-color: #6B7AA1;
+    display: grid;
+    padding: 50px;
+    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr; /* Trois colonnes égales */
+    grid-template-rows: auto auto; /* Deux rangées ajustées au contenu */
+    gap: 20px; /* Espacement entre les éléments de la grille */
+    color: #FFFFFF;
+}
+
+a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+}
+
+/* Nom du site au centre (première rangée, deux colonnes centrales) */
+.footer-center {
+    grid-row: 1 / 2; /* Première rangée */
+    grid-column: 1 / 4; /* Occupe toute la largeur des trois colonnes */
+    font-size: 24px;
+    font-family: 'Indie Flower', cursive;
+}
+
+/* Liens à gauche (deuxième rangée, première colonne) */
+.footer-left {
+    grid-row: 2 / 3; /* Deuxième rangée */
+    grid-column: 1 / 2; /* Première colonne */
+    text-align: left; /* Alignement à gauche */
+}
+
+.footer-links {
+    list-style: none; /* Supprime les puces des listes */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Liens empilés verticalement */
+    gap: 10px; /* Espacement entre les liens */
+}
+
+.fo-link {
+    font-size: 20px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.fo-link:hover {
+    color: #D7A678; /* Couleur beige clair au survol */
+}
+
+/* Logos des réseaux sociaux à droite (deuxième rangée, troisième colonne) */
+.footer-right {
+    grid-row: 2 / 3; /* Deuxième rangée */
+    grid-column: 3 / 4; /* Troisième colonne */
+    display: flex; /* Disposition horizontale des logos */
+    justify-content: center;
+    gap: 15px; /* Espacement entre les logos */
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.2); /* Agrandissement au survol */
+}
+
+li {
+    list-style: none; /* Supprime les puces des listes */
+}
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        width: 30px; /* Réduit la taille des logos */
+        height: 30px;
+    }
+}
+
+/* PAGE D'ACCUEIL */
+.mini-title {
+    background-color: #2B4570; /* Couleur de fond */
+    text-align: center; /* Centre le texte horizontalement */
+    padding: 20px 0; /* Ajoute de l'espace au-dessus et en-dessous du texte */
+    margin: 20px auto; /* Centre le conteneur horizontalement */
+    border-radius: 20px; /* Ajoute des coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre douce pour l'effet visuel */
+}
+
+.title2 {
+    font-size: 24px; /* Taille du texte */
+    color: #FFFFFF; /* Couleur du texte (blanc) */
+    margin: 0; /* Supprime les marges par défaut du titre */
+}
+
+/* Section principale */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grille responsive */
+    gap: 20px; /* Espacement entre les cartes */
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column; /* Empile les éléments à la verticale */
+    justify-content: space-between; /* Équilibre les éléments verticalement */
+    background-color: #A8D0DB;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 400px; /* Hauteur uniforme pour toutes les cartes */
+    overflow: hidden; /* Évite que le contenu dépasse */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe:hover {
+    transform: translateY(-5px); /* Effet de survol */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.recipe img {
+    height: 50%; /* L'image occupe la moitié de la carte */
+    object-fit: cover; /* Assure que l'image s'adapte sans se déformer */
+    width: 100%; /* Prend toute la largeur */
+}
+
+.recipe h3 {
+    font-size: 20px;
+    color: black;
+    margin: 10px;
+    text-align: center;
+}
+
+.recipe p {
+    font-size: 20px;
+    color: black;
+    margin: 0 10px 10px;
+    text-align: justify;
+    line-height: 1.5;
+    flex-grow: 1; /* S'étend pour occuper l'espace libre si besoin */
+}
+
+.recipe a {
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #E49273;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.recipe a:hover {
+    background-color: #C87A5E;
+    color: #FFFFFF;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.pagination a {
+    display: inline-block;
+    background-color: #E49273;
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.pagination a:hover {
+    
+    transform: scale(1.2); /* Agrandissement au survol */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .recipes {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+
+    .recipe img {
+        height: 150px; /* Réduit la hauteur des images */
+    }
+
+    .recipe h3 {
+        font-size: 30px;
+    }
+
+    .recipe p {
+        font-size: 20px;
+    }
+
+    .pagination a {
+        padding: 8px 15px; /* Réduit la taille des boutons */
+        font-size: 20px;
+    }
+}
+
+/* Image de la recette */
+.recette-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 20px; /* Centrée avec un espacement en bas */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Ingrédients */
+.ingredients-list {
+    list-style: none; /* Supprime les puces */
+    padding: 0;
+    margin: 20px 0;
+}
+
+.ingredients-list li {
+    font-size: 20px;
+    text-align: center;
+    color: #333; /* Texte noir */
+    margin: 5px 0;
+    border-bottom: 1px solid #ddd; /* Ligne de séparation */
+    padding-bottom: 5px;
+}
+
+/* Étapes de la recette */
+.recette-descript {
+    font-size: 25px;
+    color: #555;
+    line-height: 1.6;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Bouton de retour */
+.btn {
+    margin: 10px auto; /* Centre le bouton horizontalement */
+    font-size: 20px;
+    display: inline-block; /* Garde la largeur ajustée au contenu */
+    text-align: center; /* Centre le texte à l'intérieur du bouton */
+    background-color: #E49273;
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px; /* Ajoute du padding pour un meilleur rendu */
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #C87A5E;
+    color: #FFFFFF;
+}
+
+.recette-preparation {
+    font-size: 25px;
+    color: black;
+    line-height: 1.8;
+    margin: 20px 0;
+    text-align: center;
+}
+.add-recette-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.add-recette-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.add-recette-form input,
+.add-recette-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+#ingredients-container .ingredient {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#add-ingredient-btn {
+    background-color: #E49273;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#add-ingredient-btn:hover {
+    background-color: #C87A5E;
+    color: white;
+}
+
+.add-recette-form .btn {
+    align-self: center;
+    background-color: #E49273;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.add-recette-form .btn:hover {
+    background-color: #1E3458;
+    color: white;
+}
+
+#ingredients-container .ingredient {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#ingredients-container input {
+    width: 100%; /* Les champs occupent la largeur nécessaire */
+    max-width: 300px; /* Limite la largeur maximale */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.remove-ingredient-btn {
+    background-color: #E74C3C; /* Rouge vif */
+    color: white; /* Texte blanc */
+    border: none; /* Pas de bordure */
+    padding: 5px 10px; /* Taille adaptée */
+    border-radius: 50%; /* Forme circulaire */
+    font-size: 14px; /* Taille de texte */
+    font-weight: bold; /* Texte en gras */
+    cursor: pointer; /* Curseur clic */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.remove-ingredient-btn:hover {
+    background-color: #C0392B; /* Rouge plus foncé au survol */
+    transform: scale(1.1); /* Grossissement au survol */
+}
+
+/* FORMULAIRE DE CONNEXION */
+.form-container {
+    max-width: 400px;
+    margin: 50px auto; /* Centre le formulaire sur la page */
+    padding: 30px;
+    background-color: #F8F9FA; /* Fond clair */
+    border-radius: 20px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    border: none; /* Supprime toute bordure autour du formulaire */
+}
+
+.form-header h3 {
+    text-align: center;
+    color: #2B4570; /* Couleur principale */
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #E74C3C; /* Rouge pour les erreurs */
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espacement entre les champs */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #D7A678; /* Bordure beige */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+    border-color: #2B4570; /* Bordure beige foncé au focus */
+}
+
+.form-footer {
+    text-align: center; /* Centre le lien de mot de passe oublié */
+    margin-bottom: 20px;
+}
+
+.forgot-password {
+    font-size: 18px;
+    margin: 10px;
+    color: #2B4570; /* Couleur principale */
+    text-decoration: none;
+    display: inline-block; /* Centre le texte du lien */
+    transition: color 0.3s ease-in-out;
+}
+
+.forgot-password:hover {
+    color: #E49273; /* Couleur beige clair au survol */
+}
+
+/* Boutons */
+.btnCo {
+    display: block; /* Les boutons prennent une ligne complète */
+    width: 100%; /* Largeur maximale */
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #E49273; /* Beige clair */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btnCo:hover {
+    background-color: #C87A5E; /* Beige foncé */
+    color: white;
+    transform: scale(1.02); /* Légère mise en avant */
+}
+
+.secondary-btn {
+    background-color: #6B7AA1; /* Couleur secondaire */
+    color: white;
+    font-size: 20px;
+    margin-top: 10px; /* Espace entre les boutons */
+}
+
+.secondary-btn a {
+    color: white;
+    text-decoration: none;
+    display: block; /* Le lien occupe tout le bouton */
+}
+
+.secondary-btn:hover {
+    background-color: #2B4570; /* Bleu foncé */
+}
+
+/* PAGE "MES RECETTES"*/
+
+    .btn-delete {
+        background-color: #E74C3C; /* Rouge vif */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-delete:hover {
+        background-color: #C0392B; /* Rouge plus foncé */
+    }
