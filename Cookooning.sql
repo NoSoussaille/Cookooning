@@ -5,7 +5,7 @@
 -- Hôte : localhost:8889
 -- Généré le : mar. 28 jan. 2025 à 12:42
 -- Version du serveur : 5.7.39
--- Version de PHP : 8.2.0
+-- Version de PHP : 8.2.0ingredientsutilisateursid
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

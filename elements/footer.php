@@ -1,17 +1,17 @@
         <footer class="main-footer">
             <div class="footer-center">
-                <a href="#"><h1 class="header-title">Cookooning</h1></a>
+                <a href="accueil.php"><h1 class="header-title">Cookooning</h1></a>
             </div><br>
             <div class="footer-left">
                 <ul class="footer-link">
                     <?php if ($isConnected): ?>
-                        <li><a href="#" class="fo-link">Ajouter une recette</a></li>
-                        <li><a href="#" class="fo-link">Mes recettes</a></li>
+                        <li><a href="addrecette.php" class="fo-link">Ajouter une recette</a></li>
+                        <li><a href="myrecettes.php" class="fo-link">Mes recettes</a></li>
                         <li><a href="logout.php" class="fo-link">Se déconnecter</a></li>
                     <?php else: ?>
-                        <li><a href="#" class="fo-link">Ajouter une recette</a></li>
-                        <li><a href="register.php" class="fo-link">S'inscrire</a></li>
-                        <li><a href="login.php" class="fo-link">Se connecter</a></li>
+                        <li><a href="addrecette.php" class="fo-link">Ajouter une recette</a></li>
+                        <li><a href="creationcompte.php" class="fo-link">S'inscrire</a></li>
+                        <li><a href="connexion.php" class="fo-link">Se connecter</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
