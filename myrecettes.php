@@ -67,17 +67,24 @@ $mysqli->close();
         <?php if (!empty($recipes)): ?>
             <?php foreach ($recipes as $recipe): ?>
                 <div class="recipe">
-                    <img src="<?= htmlspecialchars($recipe['image']); ?>" 
-                        alt="<?= html_entity_decode($recipe['titre'], ENT_QUOTES, 'UTF-8'); ?>" 
+                    <!-- Gestion de l'image -->
+                    <img 
+                        src="<?= htmlspecialchars($recipe['image'] ?? 'images/default-recipe.jpg'); ?>" 
+                        alt="<?= htmlspecialchars($recipe['titre'] ?? 'Recette sans titre'); ?>" 
                         class="recipe-img">
 
-                    <h3><?= html_entity_decode($recipe['titre'], ENT_QUOTES, 'UTF-8'); ?></h3>
-                    <p><?= html_entity_decode($recipe['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <!-- Titre de la recette -->
+                    <h3><?= htmlspecialchars($recipe['titre'] ?? 'Recette sans titre'); ?></h3>
 
+                    <!-- Description de la recette -->
+                    <p><?= htmlspecialchars($recipe['description'] ?? 'Aucune description disponible.'); ?></p>
+
+                    <!-- Lien vers la recette -->
                     <a href="recette.php?id=<?= htmlspecialchars($recipe['id']); ?>" class="btn">Afficher plus</a>
 
+                    <!-- Formulaire de suppression -->
                     <form action="myrecettes.php" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette recette ?');">
-                        <input type="hidden" name="delete_id" value="<?= $recipe['id']; ?>">
+                        <input type="hidden" name="delete_id" value="<?= htmlspecialchars($recipe['id']); ?>">
                         <button type="submit" class="btn btn-delete">Supprimer</button>
                     </form>
                 </div>

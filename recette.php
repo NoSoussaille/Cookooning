@@ -25,46 +25,55 @@ if (isset($_GET['id'])) {
         $ingredients = $resultIngredients->fetch_all(MYSQLI_ASSOC);
         ?>
         
-        <main>
-            <!-- Titre de la recette -->
-            <div class="mini-title">
-                <h2 class="title2"><?= html_entity_decode($recette['titre'], ENT_QUOTES, 'UTF-8') ?></h2>
-            </div>
 
-            <!-- Image de la recette -->
-            <img src="<?= htmlspecialchars($recette['image']) ?>" 
-                 alt="<?= html_entity_decode($recette['titre'], ENT_QUOTES, 'UTF-8') ?>" 
-                 class="recette-img">
 
-            <!-- Description -->
-            <div class="mini-title">
-                <h2 class="title2">Description</h2>
-            </div>
-            <p class="recette-descript">
-                <?= html_entity_decode($recette['description'], ENT_QUOTES, 'UTF-8') ?>
-            </p>
+    <!-- Description -->
+    <main>
+    <!-- Titre de la recette -->
+    <div class="mini-title">
+        <h2 class="title2">
+            <?= htmlspecialchars_decode($recette['titre'] ?? 'Titre non disponible', ENT_QUOTES) ?>
+        </h2>
+    </div>
 
-            <!-- Ingrédients -->
-            <div class="mini-title">
-                <h2 class="title2">Ingrédients</h2>
-            </div>
-            <ul class="ingredients-list">
-                <?php foreach ($ingredients as $ingredient): ?>
-                    <li>
-                        <?= html_entity_decode($ingredient['nom'], ENT_QUOTES, 'UTF-8') ?>
-                        -
-                        <?= html_entity_decode($ingredient['quantite'], ENT_QUOTES, 'UTF-8') ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+    <!-- Image de la recette -->
+    <img src="<?= htmlspecialchars($recette['image'] ?? 'images/placeholder.jpg', ENT_QUOTES, 'UTF-8') ?>" 
+         alt="<?= htmlspecialchars_decode($recette['titre'] ?? 'Image non disponible', ENT_QUOTES) ?>" 
+         class="recette-img">
 
-            <!-- Préparation -->
-            <div class="mini-title">
-                <h2 class="title2">Préparation</h2>
-            </div>
-            <p class="recette-preparation">
-                <?= nl2br(html_entity_decode($recette['preparation'], ENT_QUOTES, 'UTF-8')) ?>
-            </p>
+    <!-- Description -->
+    <div class="mini-title">
+        <h2 class="title2">Description</h2>
+    </div>
+    <p class="recette-descript">
+        <?= htmlspecialchars_decode($recette['description'] ?? 'Aucune description disponible.', ENT_QUOTES) ?>
+    </p>
+
+    <!-- Ingrédients -->
+    <div class="mini-title">
+        <h2 class="title2">Ingrédients</h2>
+    </div>
+    <ul class="ingredients-list">
+        <?php if (!empty($ingredients)): ?>
+            <?php foreach ($ingredients as $ingredient): ?>
+                <li>
+                    <?= htmlspecialchars_decode($ingredient['nom'] ?? 'Ingrédient inconnu', ENT_QUOTES) ?>
+                    -
+                    <?= htmlspecialchars_decode($ingredient['quantite'] ?? 'Quantité inconnue', ENT_QUOTES) ?>
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li>Aucun ingrédient disponible.</li>
+        <?php endif; ?>
+    </ul>
+
+    <!-- Préparation -->
+    <div class="mini-title">
+        <h2 class="title2">Préparation</h2>
+    </div>
+    <p class="recette-preparation">
+        <?= nl2br(htmlspecialchars_decode($recette['preparation'] ?? 'Aucune étape de préparation disponible.', ENT_QUOTES)) ?>
+    </p>
 
             <!-- Retour à la liste des recettes -->
             <a href="accueil.php" class="btn">Retour à la liste des recettes</a>
