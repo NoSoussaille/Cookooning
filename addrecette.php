@@ -23,11 +23,11 @@ if (!isset($_SESSION['user_id'])) {
         <p style="
             font-size: 18px;
             margin-bottom: 30px;
-        ">Veuillez <a href="login.php" style="
+        ">Veuillez <a href="connexion.php" style="
             color: #2B4570;
             text-decoration: underline;
             font-weight: bold;
-        ">vous connecter</a> ou <a href="register.php" style="
+        ">vous connecter</a> ou <a href="creationcompte.php" style="
             color: #2B4570;
             text-decoration: underline;
             font-weight: bold;
