@@ -1,9 +1,10 @@
 <?php
     // Informations de connexion
-    $db_host = 'localhost';      // Adresse du serveur
-    $db_user = 'root';           // Nom d'utilisateur
-    $db_password = 'root';       // Mot de passe
-    $db_db = 'Cookooning';       // Nom de la base de données
+// Récupération des variables d'environnement
+$db_host = getenv('DB_HOST');
+$db_user = getenv('DB_USER');
+$db_password = getenv('DB_PASSWORD');
+$db_db = getenv('DB_DATABASE');
     
     // Création de la connexion
     $mysqli = new mysqli($db_host, $db_user, $db_password, $db_db);
