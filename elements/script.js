@@ -1,3 +1,47 @@
+//SUPRESSION DES AVIS
+document.addEventListener("DOMContentLoaded", () => {
+    const deleteButtons = document.querySelectorAll(".btn-delete");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const avisId = this.getAttribute("data-id");   // Récupère l'ObjectId sous forme de string
+            const avisDiv = this.closest(".avis");
+
+            if (confirm("Voulez-vous vraiment supprimer cet avis ?")) {
+                fetch("elements/delete_avis.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    // On transmet la session, nécessaire si 'delete_avis.php' 
+                    // vérifie $_SESSION['role']
+                    credentials: "same-origin",
+
+                    body: `avis_id=${avisId}`
+                })
+                .then(response => {
+                    // Debug : on peut regarder la "raw response"
+                    // console.log("Raw response:", response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Data received:", data); // Debug
+
+                    if (data.status === "success") {
+                        avisDiv.remove(); // Supprime l'avis de la page
+                    } else {
+                        alert("Erreur : " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur lors de la suppression :", error);
+                });
+            }
+        });
+    });
+});
+//FIN
+
 // Menu Burger
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -62,4 +106,5 @@ document.getElementById('ingredients-container').addEventListener('click', funct
     });
 
 // FIN
+
 

@@ -386,6 +386,105 @@ main {
     text-align: center;
 }
 
+/* Section des avis */
+.avis-section {
+    background-color: #F8F9FA; /* Fond clair */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+.avis {
+    background-color: #FFFFFF; /* Fond blanc */
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    border-left: 5px solid #E49273; /* Accent coloré */
+}
+
+.avis h4 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: #2B4570; /* Bleu principal */
+}
+
+.avis p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.avis small {
+    font-size: 14px;
+    color: #888; /* Gris clair */
+}
+
+.btn-delete {
+    background-color: #E74C3C; /* Rouge vif */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: #C0392B; /* Rouge plus foncé */
+    transform: scale(1.1); /* Zoom au survol */
+}
+
+/* Formulaire d'ajout d'avis */
+.avis-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+.avis-form label {
+    font-size: 18px;
+    color: #2B4570; /* Bleu principal */
+    margin-bottom: 5px;
+    display: block;
+}
+
+.avis-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #D7A678; /* Beige clair */
+    border-radius: 5px;
+    resize: none; /* Désactive le redimensionnement */
+    transition: border-color 0.3s ease-in-out;
+}
+
+.avis-form textarea:focus {
+    border-color: #E49273; /* Accent beige */
+    outline: none;
+}
+
+.avis-form .btn {
+    margin-top: 10px;
+    background-color: #E49273;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.avis-form .btn:hover {
+    background-color: #C87A5E;
+    color: white;
+}
 /* AJOUT DE RECETTES*/
 .add-recette-form {
     display: flex;
