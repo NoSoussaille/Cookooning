@@ -238,7 +238,7 @@ main {
 }
 
 .recipe img {
-    height: 50%; /* L'image occupe la moitié de la carte */
+    height: 40%; /* L'image occupe la moitié de la carte */
     object-fit: cover; /* Assure que l'image s'adapte sans se déformer */
     width: 100%; /* Prend toute la largeur */
 }
@@ -385,6 +385,107 @@ main {
     margin: 20px 0;
     text-align: center;
 }
+
+/* Section des avis */
+.avis-section {
+    background-color: #F8F9FA; /* Fond clair */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+.avis {
+    background-color: #FFFFFF; /* Fond blanc */
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    border-left: 5px solid #E49273; /* Accent coloré */
+}
+
+.avis h4 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: #2B4570; /* Bleu principal */
+}
+
+.avis p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.avis small {
+    font-size: 14px;
+    color: #888; /* Gris clair */
+}
+
+.btn-delete {
+    background-color: #E74C3C; /* Rouge vif */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: #C0392B; /* Rouge plus foncé */
+    transform: scale(1.1); /* Zoom au survol */
+}
+
+/* Formulaire d'ajout d'avis */
+.avis-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+.avis-form label {
+    font-size: 18px;
+    color: #2B4570; /* Bleu principal */
+    margin-bottom: 5px;
+    display: block;
+}
+
+.avis-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #D7A678; /* Beige clair */
+    border-radius: 5px;
+    resize: none; /* Désactive le redimensionnement */
+    transition: border-color 0.3s ease-in-out;
+}
+
+.avis-form textarea:focus {
+    border-color: #E49273; /* Accent beige */
+    outline: none;
+}
+
+.avis-form .btn {
+    margin-top: 10px;
+    background-color: #E49273;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.avis-form .btn:hover {
+    background-color: #C87A5E;
+    color: white;
+}
+/* AJOUT DE RECETTES*/
 .add-recette-form {
     display: flex;
     flex-direction: column;
@@ -476,6 +577,21 @@ main {
 .remove-ingredient-btn:hover {
     background-color: #C0392B; /* Rouge plus foncé au survol */
     transform: scale(1.1); /* Grossissement au survol */
+}
+
+.success-message {
+    background-color: #D4EDDA; /* Vert clair */
+    color: #155724; /* Texte vert foncé */
+    border: 1px solid #C3E6CB; /* Bordure verte */
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    max-width: 400px;
+    margin: 20px auto; /* Centré horizontalement */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    opacity: 1; /* Opacité initiale */
+    transition: opacity 0.5s ease-out; /* Animation de disparition */
 }
 
 /* FORMULAIRE DE CONNEXION */
@@ -581,17 +697,17 @@ main {
 
 /* PAGE "MES RECETTES"*/
 
-    .btn-delete {
-        background-color: #E74C3C; /* Rouge vif */
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: background-color 0.3s ease;
-    }
+.btn-delete {
+    background-color: #E74C3C; /* Rouge vif */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
 
-    .btn-delete:hover {
-        background-color: #C0392B; /* Rouge plus foncé */
-    }
+.btn-delete:hover {
+    background-color: #C0392B; /* Rouge plus foncé */
+}

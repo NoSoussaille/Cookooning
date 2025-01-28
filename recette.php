@@ -1,12 +1,13 @@
 <?php
 require_once 'elements/header.php';
 require_once 'elements/db-connexion.php';
+require_once 'elements/mongodb.php';
 
-// Vérifie si un ID est passé dans l'URL
+// Vérification de l'ID de la recette dans l'URL
 if (isset($_GET['id'])) {
     $recetteId = (int) $_GET['id'];
 
-    // Récupère les informations de la recette
+    // Récupération des informations de la recette
     $query = "SELECT * FROM recettes WHERE id = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param("i", $recetteId);
@@ -15,67 +16,127 @@ if (isset($_GET['id'])) {
     $recette = $result->fetch_assoc();
 
     if ($recette) {
-        // Récupère les ingrédients de la recette
+        // Récupération des ingrédients
         $queryIngredients = "SELECT * FROM ingredients WHERE recette_id = ?";
         $stmtIngredients = $mysqli->prepare($queryIngredients);
         $stmtIngredients->bind_param("i", $recetteId);
         $stmtIngredients->execute();
         $resultIngredients = $stmtIngredients->get_result();
         $ingredients = $resultIngredients->fetch_all(MYSQLI_ASSOC);
+        ?>
+        
+        <main>
+            <!-- Titre de la recette -->
+            <div class="mini-title">
+                <h2 class="title2"><?= html_entity_decode($recette['titre'], ENT_QUOTES, 'UTF-8') ?></h2>
+            </div>
 
-        // Affichage des informations de la recette
-        echo '<main>';
-        echo '<div class="mini-title">';
-        // On décode le titre
-        echo '<h2 class="title2">' . html_entity_decode($recette['titre'], ENT_QUOTES, 'UTF-8') . '</h2>';
-        echo '</div>';
+            <!-- Image de la recette -->
+            <img src="<?= htmlspecialchars($recette['image']) ?>" 
+                 alt="<?= html_entity_decode($recette['titre'], ENT_QUOTES, 'UTF-8') ?>" 
+                 class="recette-img">
 
-        // Chemin de l'image protégé par htmlspecialchars (pour le <img src>)
-        echo '<img src="' . htmlspecialchars($recette['image']) . '" alt="' . html_entity_decode($recette['titre'], ENT_QUOTES, 'UTF-8') . '" class="recette-img">';
+            <!-- Description -->
+            <div class="mini-title">
+                <h2 class="title2">Description</h2>
+            </div>
+            <p class="recette-descript">
+                <?= html_entity_decode($recette['description'], ENT_QUOTES, 'UTF-8') ?>
+            </p>
 
-        echo '<div class="mini-title">';
-        echo '<h2 class="title2">Déscription</h2>';
-        echo '</div>';
-        // On décode la description
-        echo '<p class="recette-descript">' . html_entity_decode($recette['description'], ENT_QUOTES, 'UTF-8') . '</p>';
+            <!-- Ingrédients -->
+            <div class="mini-title">
+                <h2 class="title2">Ingrédients</h2>
+            </div>
+            <ul class="ingredients-list">
+                <?php foreach ($ingredients as $ingredient): ?>
+                    <li>
+                        <?= html_entity_decode($ingredient['nom'], ENT_QUOTES, 'UTF-8') ?>
+                        -
+                        <?= html_entity_decode($ingredient['quantite'], ENT_QUOTES, 'UTF-8') ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
 
-        // Affiche les ingrédients
-        echo '<div class="mini-title">';
-        echo '<h2 class="title2">Ingrédients</h2>';
-        echo '</div>';
-        echo '<ul class="ingredients-list">';
-        foreach ($ingredients as $ingredient) {
-            // On décode le nom et la quantité
-            echo '<li>' 
-               . html_entity_decode($ingredient['nom'], ENT_QUOTES, 'UTF-8') 
-               . ' - ' 
-               . html_entity_decode($ingredient['quantite'], ENT_QUOTES, 'UTF-8') 
-               . '</li>';
-        }
-        echo '</ul>';
+            <!-- Préparation -->
+            <div class="mini-title">
+                <h2 class="title2">Préparation</h2>
+            </div>
+            <p class="recette-preparation">
+                <?= nl2br(html_entity_decode($recette['preparation'], ENT_QUOTES, 'UTF-8')) ?>
+            </p>
 
-        // Affiche les étapes de préparation
-        echo '<div class="mini-title">';
-        echo '<h2 class="title2">Préparation</h2>';
-        echo '</div>';
-        // On décode la préparation, puis on applique nl2br si on veut gérer les retours à la ligne
-        echo '<p class="recette-preparation">' 
-           . nl2br(html_entity_decode($recette['preparation'], ENT_QUOTES, 'UTF-8')) 
-           . '</p>';
+            <!-- Retour à la liste des recettes -->
+            <a href="accueil.php" class="btn">Retour à la liste des recettes</a>
 
-        echo '<a href="accueil.php" class="btn">Retour à la liste des recettes</a>';
-        echo '</main>';
+            <!-- Section des avis -->
+            <div class="mini-title">
+                <h2 class="title2">Avis des utilisateurs</h2>
+            </div>
+            <div class="avis-section">
+                <?php
+                // Récupère les avis MongoDB pour cette recette
+                $avis = $collectionAvis->find(['recette_id' => $recetteId]);
 
-        // Libère les ressources
+                // Si le curseur n'a pas de résultats (isDead()), on affiche un message
+                if ($avis->isDead()) {
+                    echo '<p>Aucun avis pour cette recette. Soyez le premier à laisser un avis !</p>';
+                } else {
+                    // Sinon, on boucle sur chacun des avis
+                    foreach ($avis as $avisItem) {
+                        // Convertit l'ObjectId en string
+                        $avisIdString = (string) $avisItem['_id'];
+                        ?>
+                        <div class="avis">
+                            <h4><?= htmlspecialchars($avisItem['username'], ENT_QUOTES, 'UTF-8') ?></h4>
+                            <p><?= htmlspecialchars($avisItem['texte'], ENT_QUOTES, 'UTF-8') ?></p>
+                            <p>
+                                <small>Posté le :
+                                    <?= $avisItem['created_at']->toDateTime()->format('d/m/Y H:i') ?>
+                                </small>
+                            </p>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                                <button class="btn-delete" data-id="<?= $avisIdString ?>">Supprimer</button>
+                            <?php endif; ?>
+                        </div>
+                        <?php
+                    } // fin foreach
+                } // fin if/else
+                ?>
+            </div>
+
+            <!-- Formulaire d'ajout d'avis (uniquement pour utilisateurs connectés) -->
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <form action="elements/addAvis.php" method="POST" class="avis-form">
+                    <input type="hidden" name="recette_id" value="<?= $recetteId ?>">
+                    <label for="avis">Votre avis :</label>
+                    <textarea id="avis" name="avis" required></textarea>
+                    <button class="btn" type="submit">Poster mon avis</button>
+                </form>
+            <?php else: ?>
+                <p>Connectez-vous pour laisser un avis.</p>
+            <?php endif; ?>
+        </main>
+
+        <?php
+        // Fermeture des statements
         $stmtIngredients->close();
     } else {
-        echo '<main><h1>Recette introuvable</h1><a href="accueil.php" class="btn">Retour à la liste des recettes</a></main>';
+        // Si aucune recette n'est trouvée
+        echo '<main><h1>Recette introuvable</h1>
+            <a href="accueil.php" class="btn">Retour à la liste des recettes</a></main>';
     }
 
     $stmt->close();
 } else {
-    echo '<main><h1>Aucune recette sélectionnée</h1><a href="accueil.php" class="btn">Retour à la liste des recettes</a></main>';
+    // Si aucun ID n'est passé dans l'URL
+    echo '<main><h1>Aucune recette sélectionnée</h1>
+        <a href="accueil.php" class="btn">Retour à la liste des recettes</a></main>';
 }
 
+// Fermeture de la connexion MySQL
 $mysqli->close();
+
+// Inclusion du footer
 require_once 'elements/footer.php';
+?>

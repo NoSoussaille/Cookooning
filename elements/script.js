@@ -1,3 +1,47 @@
+//SUPRESSION DES AVIS
+document.addEventListener("DOMContentLoaded", () => {
+    const deleteButtons = document.querySelectorAll(".btn-delete");
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const avisId = this.getAttribute("data-id");   // Récupère l'ObjectId sous forme de string
+            const avisDiv = this.closest(".avis");
+
+            if (confirm("Voulez-vous vraiment supprimer cet avis ?")) {
+                fetch("elements/delete_avis.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    // On transmet la session, nécessaire si 'delete_avis.php' 
+                    // vérifie $_SESSION['role']
+                    credentials: "same-origin",
+
+                    body: `avis_id=${avisId}`
+                })
+                .then(response => {
+                    // Debug : on peut regarder la "raw response"
+                    // console.log("Raw response:", response);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Data received:", data); // Debug
+
+                    if (data.status === "success") {
+                        avisDiv.remove(); // Supprime l'avis de la page
+                    } else {
+                        alert("Erreur : " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erreur lors de la suppression :", error);
+                });
+            }
+        });
+    });
+});
+//FIN
+
 // Menu Burger
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
@@ -44,4 +88,23 @@ document.getElementById('ingredients-container').addEventListener('click', funct
 });
 
 // Fin 
+
+// Div d'ajout de recette réussis
+
+    // Attendre que le DOM soit chargé
+    document.addEventListener("DOMContentLoaded", () => {
+        // Sélectionne l'élément avec la classe "success-message"
+        const message = document.querySelector(".success-message");
+
+        // Si le message existe, le faire disparaître après 10 secondes
+        if (message) {
+            setTimeout(() => {
+                message.style.opacity = "0"; // Réduit l'opacité à 0
+                setTimeout(() => message.remove(), 500); // Supprime complètement après l'animation
+            }, 10000); // 10 secondes
+        }
+    });
+
+// FIN
+
 

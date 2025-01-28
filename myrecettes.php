@@ -68,8 +68,8 @@ $mysqli->close();
             <?php foreach ($recipes as $recipe): ?>
                 <div class="recipe">
                     <img src="<?= htmlspecialchars($recipe['image']); ?>" 
-                         alt="<?= html_entity_decode($recipe['titre'], ENT_QUOTES, 'UTF-8'); ?>" 
-                         class="recipe-img">
+                        alt="<?= html_entity_decode($recipe['titre'], ENT_QUOTES, 'UTF-8'); ?>" 
+                        class="recipe-img">
 
                     <h3><?= html_entity_decode($recipe['titre'], ENT_QUOTES, 'UTF-8'); ?></h3>
                     <p><?= html_entity_decode($recipe['description'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -100,19 +100,3 @@ $mysqli->close();
 
 <?php require_once 'elements/footer.php'; ?>
 
-<style>
-    .btn-delete {
-        background-color: #E74C3C; /* Rouge vif */
-        color: #fff;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn-delete:hover {
-        background-color: #C0392B; /* Rouge plus foncé */
-    }
-</style>

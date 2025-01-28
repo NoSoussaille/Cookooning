@@ -26,9 +26,6 @@ $role = $isConnected && isset($_SESSION['role']) ? $_SESSION['role'] : null;
                 <?php if ($isConnected): ?>
                     <li><a href="addrecette.php" class="nav-link">Ajouter une recette</a></li>
                     <li><a href="myrecettes.php" class="nav-link">Mes recettes</a></li>
-                    <?php if ($role === 'admin'): ?>
-                        <li><a href="admin/dashboard.php" class="nav-link">Dashboard</a></li>
-                    <?php endif; ?>
                     <li><a href="logout.php" class="nav-link">Se déconnecter</a></li>
                 <?php else: ?>
                     <li><a href="addrecette.php" class="nav-link">Ajouter une recette</a></li>
